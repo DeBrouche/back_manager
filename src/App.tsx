@@ -1,4 +1,5 @@
 import "./index.css";
+import "antd/dist/antd.min.css";
 
 import {
   DesktopOutlined,
@@ -33,7 +34,6 @@ class BackManage extends Component {
     const { collapsed } = this.state;
     return (
       <div className="manage-wrapper">
-        <div>name</div>
         <Layout style={{ minHeight: "100vh" }}>
           <Sider collapsible collapsed={collapsed} onCollapse={this.onCollapse}>
             <div className="logo" />
