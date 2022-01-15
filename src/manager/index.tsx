@@ -1,7 +1,7 @@
 import "./index.css";
 
 import axios from "axios";
-import React, { Component } from "react";
+import { Component } from "react";
 
 class Manager extends Component {
   state = {
@@ -109,12 +109,16 @@ class Manager extends Component {
                   <th>暂未添加</th>
                   <th>
                     <div className="switch-cell">
-                      <div className="switch"></div>
+                      <div className="switch-but">
+                        <div className="in"></div>
+                      </div>
                     </div>
                   </th>
                   <th>
                     <div className="switch-cell">
-                      <div className="switch"></div>
+                      <div className="switch-but">
+                        <div className="in"></div>
+                      </div>
                     </div>
                   </th>
                   <th className="blue">{file.filesize}</th>

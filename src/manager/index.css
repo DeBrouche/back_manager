@@ -1,5 +1,5 @@
 .showMine {
-  display: none;
+  display: normal;
 }
 .test {
   color: aqua;
@@ -7,13 +7,13 @@
 .table {
   width: 1000px;
   height: auto;
-  border: solid 1px aqua;
+  border: solid 1px teal;
 }
 .switch-cell {
   display: flex;
   justify-content: center;
 }
-.switch {
+.switch-but {
   position: relative;
 
   width: 45px;
@@ -21,7 +21,7 @@
   border-radius: 11px;
   background-color: #b4d3fc;
 }
-.switch ::after {
+.switch-but .in {
   position: relative;
   top: 1px;
   left: 1px;
