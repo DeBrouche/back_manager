@@ -9,29 +9,7 @@
   height: auto;
   border: solid 1px teal;
 }
-.switch-cell {
-  display: flex;
-  justify-content: center;
-}
-.switch-but {
-  position: relative;
 
-  width: 45px;
-  height: 22px;
-  border-radius: 11px;
-  background-color: #b4d3fc;
-}
-.switch-but .in {
-  position: relative;
-  top: 1px;
-  left: 1px;
-  content: "";
-  display: block;
-  width: 20px;
-  height: 20px;
-  border-radius: 11px;
-  background-color: #fff;
-}
 .table th {
   min-width: 120px;
   height: 50px;
