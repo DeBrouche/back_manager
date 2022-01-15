@@ -26,7 +26,7 @@ class MyPlugins extends Component {
           filename: item.name,
           filesize: item.size + " Byte",
           fileurl: item.url,
-          filepath: item.url.substr(item.url.lastIndexOf("_") + 1),
+          filepath: item.url.substring(item.url.lastIndexOf("_") + 1),
         }));
 
         this.setState({

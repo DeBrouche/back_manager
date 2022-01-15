@@ -27,7 +27,7 @@ class Manager extends Component {
           filename: item.name,
           filesize: item.size + " Byte",
           fileurl: item.url,
-          filepath: item.url.substr(item.url.lastIndexOf("_") + 1),
+          filepath: item.url.substring(item.url.lastIndexOf("_") + 1),
         }));
 
         this.setState({
@@ -36,21 +36,24 @@ class Manager extends Component {
         console.log(files);
       });
 
+    this.setState({
+      uid: "123",
+    });
     //请求uid
-    axios
-      .get("https://inspire.toutiao.com/proxy/api/auth_valid")
-      .then((data) => {
-        // 上传成功
-        console.log(data.data.message);
-        console.log(data.data.data.uid);
-        this.setState({
-          uid: data.data.data.uid,
-        });
-      })
-      .catch((error) => {
-        // 调用失败，进行错误处理
-        console.log(error);
-      });
+    // axios
+    //   .get("https://inspire.toutiao.com/proxy/api/auth_valid")
+    //   .then((data) => {
+    //     // 上传成功
+    //     console.log(data.data.message);
+    //     console.log(data.data.data.uid);
+    //     this.setState({
+    //       uid: data.data.data.uid,
+    //     });
+    //   })
+    //   .catch((error) => {
+    //     // 调用失败，进行错误处理
+    //     console.log(error);
+    //   });
   }
 
   myfile = () => {

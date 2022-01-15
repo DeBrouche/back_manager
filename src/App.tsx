@@ -49,8 +49,8 @@ class BackManage extends Component {
                 <Menu.Item key="4">Bill</Menu.Item>
                 <Menu.Item key="5">Alex</Menu.Item>
               </SubMenu>
-              <SubMenu key="sub2" icon={<TeamOutlined />} title="Team">
-                <Menu.Item key="6">Team 1</Menu.Item>
+              <SubMenu key="sub2" icon={<TeamOutlined />} title="Test">
+                <Menu.Item key="6"></Menu.Item>
                 <Menu.Item key="8">Team 2</Menu.Item>
               </SubMenu>
               <Menu.Item key="9" icon={<FileOutlined />}>
@@ -63,7 +63,7 @@ class BackManage extends Component {
             <Content style={{ margin: "0 16px" }}>
               <Breadcrumb style={{ margin: "16px 0" }}>
                 <Breadcrumb.Item>User</Breadcrumb.Item>
-                <Breadcrumb.Item>Bill</Breadcrumb.Item>
+                <Breadcrumb.Item>prototype</Breadcrumb.Item>
               </Breadcrumb>
               <div
                 className="site-layout-background"
