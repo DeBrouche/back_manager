@@ -14,6 +14,8 @@
     "@types/react-dom": "^17.0.9",
     "antd": "4.16.7",
     "customize-cra": "^1.0.0",
+    "less": "^4.1.2",
+    "less-loader": "5.0.0",
     "react": "^17.0.2",
     "react-app-rewired": "^2.1.11",
     "react-dom": "^17.0.2",
@@ -24,6 +26,8 @@
     "web-vitals": "^2.1.0"
   },
   "scripts": {
+    "start_": "react-app-rewired start",
+    "build_": "react-app-rewired build",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",

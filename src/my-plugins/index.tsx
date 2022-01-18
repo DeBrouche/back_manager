@@ -1,14 +1,15 @@
-import axios from 'axios';
-import React, { Component } from 'react';
+import axios from "axios";
+import React, { Component } from "react";
+import "./index.css";
 
 class MyPlugins extends Component {
   state = {
     files: [
-      { filename: '1', filesize: '2', fileurl: '2', filepath: 'a' },
+      { filename: "1", filesize: "2", fileurl: "2", filepath: "a" },
 
-      { filename: '11', filesize: '12', fileurl: '22', filepath: 'a' },
+      { filename: "11", filesize: "12", fileurl: "22", filepath: "a" },
     ],
-    uid: '',
+    uid: "",
   };
   componentDidMount() {
     //请求所有文件数据
@@ -18,35 +19,38 @@ class MyPlugins extends Component {
       size: string;
       url: string;
     }
-    axios.post('https://qcdnq7.fn.thelarkcloud.com/getFiles', {}, { headers: {} }).then((res) => {
-      files = res.data.result.map((item: SingleFile) => ({
-        filename: item.name,
-        filesize: item.size + ' Byte',
-        fileurl: item.url,
-        filepath: item.url.substr(item.url.lastIndexOf('_') + 1),
-      }));
+    axios
+      .post("https://qcdnq7.fn.thelarkcloud.com/getFiles", {}, { headers: {} })
+      .then((res) => {
+        files = res.data.result.map((item: SingleFile) => ({
+          filename: item.name,
+          filesize: item.size + " Byte",
+          fileurl: item.url,
+          filepath: item.url.substring(item.url.lastIndexOf("_") + 1),
+        }));
 
-      this.setState({
-        files: files,
+        this.setState({
+          files: files,
+        });
+        console.log(files);
       });
-      console.log(files);
-    });
 
     //请求uid
-    axios
-      .get('https://inspire.toutiao.com/proxy/api/auth_valid')
-      .then((data) => {
-        // 上传成功
-        console.log(data.data.message);
-        console.log(data.data.data.uid);
-        this.setState({
-          uid: data.data.data.uid,
-        });
-      })
-      .catch((error) => {
-        // 调用失败，进行错误处理
-        console.log(error);
-      });
+    // axios
+    //   .get('https://inspire.toutiao.com/proxy/api/auth_valid')
+    //   .then((data) => {
+    //     // 上传成功
+    //     console.log(data.data.message);
+    //     console.log(data.data.data.uid);
+    //     ;
+    //   })
+    //   .catch((error) => {
+    //     // 调用失败，进行错误处理
+    //     console.log(error);
+    //   });
+    this.setState({
+      uid: "12345",
+    });
   }
 
   myfile = () => {
@@ -57,11 +61,15 @@ class MyPlugins extends Component {
       url: string;
     }
     axios
-      .post('https://qcdnq7.fn.thelarkcloud.com/getMyfile', { uid: this.state.uid }, { headers: {} })
+      .post(
+        "https://qcdnq7.fn.thelarkcloud.com/getMyfile",
+        { uid: this.state.uid },
+        { headers: {} }
+      )
       .then((res) => {
         files = res.data.result.map((item: SingleFile) => ({
           filename: item.name,
-          filesize: item.size + ' Byte',
+          filesize: item.size + " Byte",
           // fileurl:item.url.substr(item.url.lastIndexOf("_") + 1)
           fileurl: item.url,
         }));
@@ -83,7 +91,7 @@ class MyPlugins extends Component {
         <table>
           <thead>
             <tr>
-              <th>文件名</th>
+              <th className="red">文件名</th>
               <th>文件大小</th>
               <th>下载地址</th>
             </tr>
