@@ -63,7 +63,7 @@ class BackManage extends Component {
                 </Menu.Item>
               </SubMenu>
               <Menu.Item key="9" icon={<FileOutlined />}>
-                <Link to="/server/manager">Plugins</Link>
+                <Link to="/server/manager">Manager</Link>
               </Menu.Item>
             </Menu>
           </Sider>

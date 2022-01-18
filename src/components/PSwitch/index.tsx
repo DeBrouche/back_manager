@@ -5,7 +5,7 @@ type props = {
 };
 const Pswitch = (props: props) => {
   let show = props.show;
-  console.log(show);
+  // console.log(show);
   // console.log("true");
   // console.log("false");
   // console.log(props);
