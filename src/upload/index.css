@@ -1,6 +1,9 @@
 .thumnail-input {
-  margin-top: 50px;
+  /* margin-top: 50px; */
   /* background-color: teal; */
+}
+.inputs-wrapper > div {
+  margin-bottom: 50px;
 }
 .img-preview {
   width: 150px;
@@ -8,4 +11,50 @@
   border: dashed 4px #aaa;
   border-radius: 10px;
   background-color: #fff;
+  margin-bottom: 1em;
+}
+
+.hidden {
+  display: none;
+}
+.input-title {
+  font-size: 1.2rem;
+  margin-bottom: 10px;
+}
+.prev-box {
+  width: 142px;
+  height: 142px;
+}
+.unselected {
+  width: 142px;
+  height: 142px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+}
+.p1 {
+  width: 50px;
+  height: 50px;
+}
+.p11 {
+  border-right: 1px solid black;
+  border-bottom: 1px solid black;
+}
+.p12 {
+  border-left: 1px solid black;
+  border-bottom: 1px solid black;
+}
+.p14 {
+  border-left: 1px solid black;
+  border-top: 1px solid black;
+}
+.p13 {
+  border-right: 1px solid black;
+  border-top: 1px solid black;
+}
+.add-name {
+  width: 150px;
+  text-align: center;
 }

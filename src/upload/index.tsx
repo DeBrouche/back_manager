@@ -1,7 +1,6 @@
 import InspireCloud from "@byteinspire/js-sdk";
 import axios from "axios";
-import { url } from "inspector";
-import React, { Component } from "react";
+import { Component } from "react";
 
 import "./index.css";
 
@@ -9,7 +8,9 @@ class UpLoad extends Component {
   state = {
     url: "",
     uid: "",
-    pageurl: "https://www.camptogo.com/static/img/page1bg.9926d901.png",
+    thumnail_url: "",
+    thumnail_name: "",
+    thumnail_size: "",
   };
   upLoadFiles = () => {
     const serviceId = "qcdnq7"; // 替换成你的 serviceId，可在后台「设置」页面获取
@@ -64,9 +65,12 @@ class UpLoad extends Component {
     if (fir_input.files && window.webkitURL !== undefined) {
       // webkit or chrome
       let url = window.webkitURL.createObjectURL(fir_input.files[0]);
-      console.log(url);
+      let { name, size } = fir_input.files[0];
+      console.log(url, name, size);
       thiscom.setState({
-        pageurl: url,
+        thumnail_url: url,
+        thumnail_name: name,
+        thumnail_size: size,
       });
     }
   };
@@ -78,16 +82,61 @@ class UpLoad extends Component {
 
   render() {
     return (
-      <div>
+      <div className="inputs-wrapper">
+        {/* 名称 */}
+        <div className="des-input ">
+          <div className="input-title">插件名称</div>
+        </div>
+        {/* 脚本 */}
         <div className="testinput">
-          <div>Upload page</div>
+          <div className="input-title">js脚本</div>
           <input type="file" id="fileInput" />
           <button onClick={this.upLoadFiles}>上传文件</button>
         </div>
+        {/* 头像 */}
         <div className="thumnail-input">
-          <input type="file" id="thumnail" onChange={this.showfile} />
-          <div className="img-preview" onClick={this.choose_thumnail}></div>
-          <img src={this.state.pageurl} alt="nothing a all" id="prev" />
+          <div className="input-title">插件缩略图</div>
+          <input
+            className="hidden"
+            type="file"
+            id="thumnail"
+            onChange={this.showfile}
+            accept="image/*"
+          />
+          <div className="img-preview" onClick={this.choose_thumnail}>
+            <div
+              className={
+                !(this.state.thumnail_url.length > 3) ? "unselected" : "hidden"
+              }
+            >
+              <div className="p1 p11"></div>
+              <div className="p1 p12"></div>
+              <div className="p1 p13"></div>
+              <div className="p1 p14"></div>
+            </div>
+            <div
+              className={
+                this.state.thumnail_url.length > 3 ? "prev-box" : "hidden"
+              }
+            >
+              <img
+                className={
+                  this.state.thumnail_url.length > 3 ? "prev-box" : "hidden"
+                }
+                src={this.state.thumnail_url}
+                alt="nothing a all"
+                id="prev"
+              />
+            </div>
+          </div>
+          <div className="add-name">
+            <p>点击选择图片</p>
+            <p>{}</p>
+          </div>
+        </div>
+        {/* 描述 */}
+        <div className="des-input">
+          <div className="input-title">插件描述</div>
         </div>
       </div>
     );
