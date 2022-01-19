@@ -1,18 +1,3 @@
-<<<<<<< HEAD
-import "./index.less";
-
-import axios from "axios";
-import React, { Component } from "react";
-
-class Manager extends Component {
-  state = {
-    files: [
-      { filename: "1", filesize: "2", fileurl: "2", filepath: "a" },
-
-      { filename: "11", filesize: "12", fileurl: "22", filepath: "a" },
-    ],
-    uid: "",
-=======
 import "./index.css";
 
 import axios from "axios";
@@ -41,43 +26,12 @@ class Manager extends Component {
     this.setState({
       files,
     });
->>>>>>> rebuilt
   };
   componentDidMount() {
     //请求所有文件数据
     let files: Array<SingleFile>;
-<<<<<<< HEAD
-    interface SingleFile {
-      name: string;
-      size: string;
-      url: string;
-    }
-    axios
-      .post("https://qcdnq7.fn.thelarkcloud.com/getFiles", {}, { headers: {} })
-      .then((res) => {
-        files = res.data.result.map((item: SingleFile) => ({
-          filename: item.name,
-          filesize: item.size + " Byte",
-          fileurl: item.url,
-          filepath: item.url.substr(item.url.lastIndexOf("_") + 1),
-        }));
-
-        this.setState({
-          files: files,
-        });
-        console.log(files);
-      });
-=======
->>>>>>> rebuilt
 
     axios
-<<<<<<< HEAD
-      .get("https://inspire.toutiao.com/proxy/api/auth_valid")
-      .then((data) => {
-        // 上传成功
-        console.log(data.data.message);
-        console.log(data.data.data.uid);
-=======
       .post("https://qcdnq7.fn.thelarkcloud.com/getFiles", {}, { headers: {} })
       .then((res) => {
         files = res.data.result.map((item: SingleFile) => ({
@@ -93,7 +47,6 @@ class Manager extends Component {
           uid: item.uid,
         }));
         // console.log(this);
->>>>>>> rebuilt
         this.setState({
           files: files,
         });
@@ -126,23 +79,14 @@ class Manager extends Component {
     axios
       .post(
         "https://qcdnq7.fn.thelarkcloud.com/getMyfile",
-<<<<<<< HEAD
-        { uid: this.state.uid },
-=======
         { uid: "712931055244973" },
->>>>>>> rebuilt
         { headers: {} }
       )
       .then((res) => {
         files = res.data.result.map((item: SingleFile) => ({
-<<<<<<< HEAD
-          filename: item.name,
-          filesize: item.size + " Byte",
-=======
           name: item.name,
           size: item.size + " Byte",
           description: item.description,
->>>>>>> rebuilt
           // fileurl:item.url.substr(item.url.lastIndexOf("_") + 1)
           url: item.url,
           status: true,

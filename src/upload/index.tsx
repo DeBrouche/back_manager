@@ -1,11 +1,15 @@
 import InspireCloud from "@byteinspire/js-sdk";
 import axios from "axios";
+import { url } from "inspector";
 import React, { Component } from "react";
+
+import "./index.css";
 
 class UpLoad extends Component {
   state = {
     url: "",
     uid: "",
+    pageurl: "https://www.camptogo.com/static/img/page1bg.9926d901.png",
   };
   upLoadFiles = () => {
     const serviceId = "qcdnq7"; // 替换成你的 serviceId，可在后台「设置」页面获取
@@ -46,7 +50,26 @@ class UpLoad extends Component {
       }
     }
   };
-
+  choose_thumnail() {
+    let fir_input = document.getElementById("thumnail");
+    if (fir_input) {
+      fir_input.click();
+    }
+    // document.getElementById("thumnail").click();
+  }
+  showfile = () => {
+    let thiscom = this;
+    let fir_input = document.getElementById("thumnail") as HTMLInputElement;
+    console.log(fir_input.files);
+    if (fir_input.files && window.webkitURL !== undefined) {
+      // webkit or chrome
+      let url = window.webkitURL.createObjectURL(fir_input.files[0]);
+      console.log(url);
+      thiscom.setState({
+        pageurl: url,
+      });
+    }
+  };
   componentDidMount() {
     this.setState({
       uid: "712931055244973",
@@ -56,9 +79,16 @@ class UpLoad extends Component {
   render() {
     return (
       <div>
-        <div>Upload page</div>
-        <input type="file" id="fileInput" />
-        <button onClick={this.upLoadFiles}>上传文件</button>
+        <div className="testinput">
+          <div>Upload page</div>
+          <input type="file" id="fileInput" />
+          <button onClick={this.upLoadFiles}>上传文件</button>
+        </div>
+        <div className="thumnail-input">
+          <input type="file" id="thumnail" onChange={this.showfile} />
+          <div className="img-preview" onClick={this.choose_thumnail}></div>
+          <img src={this.state.pageurl} alt="nothing a all" id="prev" />
+        </div>
       </div>
     );
   }

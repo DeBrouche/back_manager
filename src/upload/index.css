@@ -1,0 +1,11 @@
+.thumnail-input {
+  margin-top: 50px;
+  /* background-color: teal; */
+}
+.img-preview {
+  width: 150px;
+  height: 150px;
+  border: dashed 4px #aaa;
+  border-radius: 10px;
+  background-color: #fff;
+}
