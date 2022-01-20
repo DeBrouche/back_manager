@@ -22,7 +22,7 @@ class UpLoad extends Component {
     plug_des: "",
     thumnail_file: "",
     scripts_file: "",
-    id: "",
+    id_input: "",
   };
   setscripts = () => {
     const fileInputElement = document.getElementById(
@@ -114,7 +114,7 @@ class UpLoad extends Component {
     formData.append("plug_thumnail", this.state.thumnail_file);
     formData.append("thumnail_name", this.state.thumnail_name);
     formData.append("scripts_file", this.state.scripts_file);
-    formData.append("uid", this.state.id);
+    formData.append("uid", this.state.id_input);
     // console.log(formData);
     inspirecloud
       .run("upload_plugin", formData, {
@@ -164,7 +164,9 @@ class UpLoad extends Component {
         <div className="testinput">
           <div className="input-title">js脚本</div>
           <input onChange={this.setscripts} type="file" id="fileInput" />
-          <button onClick={this.upLoadFiles}>上传文件</button>
+          <button className="hidden" onClick={this.upLoadFiles}>
+            上传文件
+          </button>
         </div>
         {/* 头像 */}
         <div className="thumnail-input">
@@ -219,16 +221,22 @@ class UpLoad extends Component {
               cols={70}
               rows={5}
             ></textarea>
-            <input
-              type="text"
-              ref={this.id_input}
-              onChange={this.setid}
-              placeholder="设置用户id"
-            />
+            <div className="asdasd">
+              <input
+                type="text"
+                ref={this.id_input}
+                onChange={this.setid}
+                placeholder="设置用户id"
+              />
+            </div>
           </div>
         </div>
-        <button onClick={this.showstate}>显示数据</button>
-        <button onClick={this.upload_plugin}>上传插件</button>
+        <button className="buttonofmyown" onClick={this.showstate}>
+          显示数据
+        </button>
+        <button className="buttonofmyown " onClick={this.upload_plugin}>
+          上传插件
+        </button>
       </div>
     );
   }
