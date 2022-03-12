@@ -1,0 +1,57 @@
+.main {
+  position: relative;
+  width: 500px;
+  height: 500px;
+}
+.bb {
+  position: absolute;
+  width: 100px;
+  height: 100px;
+  border-radius: 50px;
+  background-color: rgb(223, 221, 106);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 10px;
+}
+.light {
+  background: rgb(172, 199, 154);
+}
+.bb1,
+.bb7 {
+  left: 200px;
+}
+.bb2,
+.bb6 {
+  left: 320px;
+}
+.bb3,
+.bb5 {
+  left: 480px;
+}
+.bb4 {
+  left: 520px;
+}
+.bb8,
+.bb10 {
+  left: 50px;
+}
+.bb9 {
+  left: 0px;
+}
+.bb3,
+.bb10 {
+  top: 110px;
+}
+.bb9,
+.bb4 {
+  top: 220px;
+}
+.bb8,
+.bb5 {
+  top: 330px;
+}
+.bb6,
+.bb7 {
+  top: 440px;
+}

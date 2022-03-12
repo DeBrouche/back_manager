@@ -1,22 +1,7 @@
-<<<<<<< HEAD
-import "./index.less";
-
-import axios from "axios";
-import React, { Component } from "react";
-
-class Manager extends Component {
-  state = {
-    files: [
-      { filename: "1", filesize: "2", fileurl: "2", filepath: "a" },
-
-      { filename: "11", filesize: "12", fileurl: "22", filepath: "a" },
-    ],
-    uid: "",
-=======
 import "./index.css";
 
 import axios from "axios";
-import { Component } from "react";
+import React, { Component } from "react";
 
 import { Switch } from "antd";
 
@@ -27,57 +12,53 @@ class Manager extends Component {
   state = {
     files: [],
     uid: "",
+    showthum: false,
   };
   changes = (e: boolean, ev: Event) => {};
-  statuschange = (e: string, index: number, checked: boolean, ev: Event) => {
+  statuschange = (
+    type: string,
+    pid: string,
+    index: number,
+    checked: boolean,
+    ev: Event
+  ) => {
     // console.log(e, index, checked, ev);
     // let  files : Array<SingleFile> = this.state.files;
     let { files }: { files: Array<SingleFile> } = this.state;
-    let { status, uid } = this.state.files[index];
-    console.log(!status, uid, new Date());
-
-    files[index].status = !status;
+    let { status, uid, im_invoked } = this.state.files[index];
+    console.log(!status, !im_invoked, uid, new Date());
+    let request = {
+      id: pid,
+      type: type,
+      res: false,
+    };
+    if (type === "status") {
+      files[index].status = !status;
+      request.res = !status;
+    }
+    if (type === "invoked") {
+      files[index].im_invoked = !im_invoked;
+      request.res = !im_invoked;
+    }
 
     this.setState({
       files,
     });
->>>>>>> rebuilt
+    //请求改变
+    console.log(request);
+    axios
+      .post("https://qcdnq7.api.cloudendpoint.cn/statuschange", request, {
+        headers: {},
+      })
+      .then((res) => {
+        console.log(res);
+      });
   };
   componentDidMount() {
     //请求所有文件数据
     let files: Array<SingleFile>;
-<<<<<<< HEAD
-    interface SingleFile {
-      name: string;
-      size: string;
-      url: string;
-    }
-    axios
-      .post("https://qcdnq7.fn.thelarkcloud.com/getFiles", {}, { headers: {} })
-      .then((res) => {
-        files = res.data.result.map((item: SingleFile) => ({
-          filename: item.name,
-          filesize: item.size + " Byte",
-          fileurl: item.url,
-          filepath: item.url.substr(item.url.lastIndexOf("_") + 1),
-        }));
-
-        this.setState({
-          files: files,
-        });
-        console.log(files);
-      });
-=======
->>>>>>> rebuilt
 
     axios
-<<<<<<< HEAD
-      .get("https://inspire.toutiao.com/proxy/api/auth_valid")
-      .then((data) => {
-        // 上传成功
-        console.log(data.data.message);
-        console.log(data.data.data.uid);
-=======
       .post("https://qcdnq7.fn.thelarkcloud.com/getFiles", {}, { headers: {} })
       .then((res) => {
         files = res.data.result.map((item: SingleFile) => ({
@@ -93,7 +74,6 @@ class Manager extends Component {
           uid: item.uid,
         }));
         // console.log(this);
->>>>>>> rebuilt
         this.setState({
           files: files,
         });
@@ -126,32 +106,28 @@ class Manager extends Component {
     axios
       .post(
         "https://qcdnq7.fn.thelarkcloud.com/getMyfile",
-<<<<<<< HEAD
         { uid: this.state.uid },
-=======
-        { uid: "712931055244973" },
->>>>>>> rebuilt
         { headers: {} }
       )
       .then((res) => {
         files = res.data.result.map((item: SingleFile) => ({
-<<<<<<< HEAD
-          filename: item.name,
-          filesize: item.size + " Byte",
-=======
+          _id: item._id,
+          p_name: item.p_name,
           name: item.name,
           size: item.size + " Byte",
           description: item.description,
->>>>>>> rebuilt
-          // fileurl:item.url.substr(item.url.lastIndexOf("_") + 1)
           url: item.url,
-          status: true,
-          im_invoked: false,
+          // path: item.url.substring(item.url.lastIndexOf("_") + 1),
+          status: item.status,
+          im_invoked: item.im_invoked,
+          uid: item.uid,
+          thum_url: item.thum_url,
         }));
 
         this.setState(
           {
             files: files,
+            showthum: true,
           },
           () => {
             console.log(this.state);
@@ -161,13 +137,27 @@ class Manager extends Component {
       })
       .catch((e) => console.log(e));
   };
-
+  idinput = React.createRef<HTMLInputElement>();
+  setid = () => {
+    let idin = this.idinput.current;
+    if (idin) {
+      this.setState({
+        uid: idin.value,
+      });
+    }
+  };
   render() {
     // console.log(this.state);
     return this.state.files.length === 0 ? (
       <div className="noinfo">对不起，没有信息</div>
     ) : (
       <div>
+        <input
+          type="text"
+          ref={this.idinput}
+          onChange={this.setid}
+          placeholder="我的id"
+        />
         <button className="showMine" onClick={this.myfile}>
           只显示我上传的
         </button>
@@ -175,6 +165,7 @@ class Manager extends Component {
           <table>
             <thead>
               <tr>
+                <th className={this.state.showthum ? "" : "hidden"}>插件图</th>
                 <th>插件名称</th>
                 <th>插件描述</th>
                 <th>插件状态</th>
@@ -189,6 +180,9 @@ class Manager extends Component {
             <tbody>
               {this.state.files.map((file: SingleFile, index) => (
                 <tr key={index}>
+                  <th className={this.state.showthum ? "" : "hidden"}>
+                    <img src={file.thum_url} alt="" className="thumimg" />
+                  </th>
                   <th className="plug-name">{file.p_name}</th>
                   <th>{file.description}</th>
                   <th>
@@ -200,12 +194,32 @@ class Manager extends Component {
                       checked={file.status}
                       onChange={this.changes}
                       onClick={(checked, event) => {
-                        this.statuschange(file._id, index, checked, event);
+                        this.statuschange(
+                          "status",
+                          file._id,
+                          index,
+                          checked,
+                          event
+                        );
                       }}
                     />
                   </th>
                   <th>
-                    <Pswitch show={file.im_invoked} />
+                    <Switch
+                      checkedChildren="开启"
+                      unCheckedChildren="关闭"
+                      checked={file.im_invoked}
+                      onChange={this.changes}
+                      onClick={(checked, event) => {
+                        this.statuschange(
+                          "invoked",
+                          file._id,
+                          index,
+                          checked,
+                          event
+                        );
+                      }}
+                    />
                   </th>
                   <th className="blue">{file.size}</th>
                   <th>

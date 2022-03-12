@@ -9,6 +9,7 @@ interface SinglePlugin {
   im_invoked: boolean;
   description: string;
   uid: string;
+  thum_url: string;
 }
 
 export type { SinglePlugin };
