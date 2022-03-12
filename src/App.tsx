@@ -17,6 +17,7 @@ import { Manager } from "./manager";
 import { MyPlugins } from "./my-plugins";
 import { UpLoad } from "./upload";
 import { TestPage } from "./testpage/testpage";
+import { Bulbs } from "./test/test";
 
 const { Header, Content, Footer, Sider } = Layout;
 const { SubMenu } = Menu;
@@ -45,8 +46,10 @@ class BackManage extends Component {
               <Menu.Item key="2" icon={<DesktopOutlined />}>
                 <NavLink to="/server/upload">上传</NavLink>
               </Menu.Item>
-              <SubMenu key="sub1" icon={<UserOutlined />} title="User">
-                <Menu.Item key="3">Tom</Menu.Item>
+              <SubMenu key="sub1" icon={<UserOutlined />} title="烧脑">
+                <Menu.Item key="3">
+                  <NavLink to="/server/bulb">猪猪</NavLink>
+                </Menu.Item>
                 <Menu.Item key="4">Bill</Menu.Item>
                 <Menu.Item key="5">Alex</Menu.Item>
               </SubMenu>
@@ -82,6 +85,7 @@ class BackManage extends Component {
                   <Route path="/server/my" component={MyPlugins}></Route>
                   <Route path="/server/upload" component={UpLoad}></Route>
                   <Route path="/server/manager" component={Manager}></Route>
+                  <Route path="/server/bulb" component={Bulbs}></Route>
                   <Route
                     path="/server/testpage/:show"
                     component={TestPage}

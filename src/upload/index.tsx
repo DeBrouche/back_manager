@@ -147,6 +147,43 @@ class UpLoad extends Component {
       this.setState({ plug_des: desinput.value });
     }
   };
+  test = () => {
+    axios
+      .post(
+        "https://www.camptogo.com" +
+          "/api/e9b849a515a84327b424af7ccdbf2949/mobile/miniapp/v1_0_0/wechat/mini/env/unlimited/get",
+        {
+          page: "pages/detail/detail",
+          scene: "id=1",
+          check_path: true,
+          env_version: "trial",
+        },
+        {
+          headers: {
+            Authorization:
+              "Basic TmdpbnhBdXRoVXNlcm5hbWUxNjM4MWVmYTA2OWE5MGNiZGU5OTg1NGM4MTE4MzAzNmE0YmQyZTQ3NzZlYjc3MGZhNjk3NDBmMWM1YzA2YWE0Ok5naW54QXV0aFBhc3N3b3JkZTA1ODhlM2IzYzViMjQwZmUzZjVmYjY1M2QyOTkwZjM0YjUyZWUwYjU5NWFjZjY1NTNhOTI0YjA3MTZjYjM2Ng==",
+            "content-type": "application/json",
+          },
+        }
+      )
+
+      .then((adres) => {
+        console.log(adres);
+        let bytes = new Uint8Array(adres.data);
+        let storeData = "";
+        let len = bytes.byteLength;
+        for (let i = 0; i < len; i++) {
+          storeData += String.fromCharCode(bytes[i]);
+        }
+        let imgUrl = "data:image/png;base64," + window.btoa(storeData);
+        console.log(imgUrl);
+      })
+      .catch((error) => {
+        console.log(error);
+        // 调用失败，进行错误处理
+      });
+  };
+
   render() {
     return (
       <div className="inputs-wrapper">
@@ -236,6 +273,9 @@ class UpLoad extends Component {
         </button>
         <button className="buttonofmyown " onClick={this.upload_plugin}>
           上传插件
+        </button>
+        <button className="buttonofmyown " onClick={this.test}>
+          获取test
         </button>
       </div>
     );
